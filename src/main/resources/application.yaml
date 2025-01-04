@@ -3,8 +3,8 @@ spring:
     name: chat-service
   datasource:
     url: jdbc:mysql://localhost:3308/chat_service
-    username: service_user
-    password: service_user
+    username: chat_service_user
+    password: chat_service_user
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
