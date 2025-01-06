@@ -1,26 +1,30 @@
 package org.fastcampus.chatservice.entities;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-@Entity
 @Getter
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class MemberChatroomMapping {
+@NoArgsConstructor
+@Entity
+public class Message {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="member_chatroom_mapping_id")
+    @Column(name="message_id")
     @Id
     Long id;
+
+    String text;
 
     @JoinColumn(name="member_id")
     @ManyToOne
     Member member;
 
-    @JoinColumn(name="chatroom_id")
+    @JoinColumn(name = "chatroom_id")
     @ManyToOne
     Chatroom chatroom;
-
 }

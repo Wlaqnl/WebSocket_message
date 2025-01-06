@@ -1,11 +1,17 @@
 package org.fastcampus.chatservice.entities;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Chatroom {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,4 +25,19 @@ public class Chatroom {
     Set<MemberChatroomMapping> memberChatroomMappingSet;
 
     LocalDateTime createdAt;
+
+    public MemberChatroomMapping addMember(Member member){
+        if(this.getMemberChatroomMappingSet() == null){
+            this.memberChatroomMappingSet = new HashSet<>();
+        }
+
+        MemberChatroomMapping memberChatroomMapping = MemberChatroomMapping.builder()
+                .member(member)
+                .chatroom(this)
+                .build();
+
+        this.memberChatroomMappingSet.add(memberChatroomMapping);
+
+        return memberChatroomMapping;
+    }
 }
