@@ -3,6 +3,8 @@ package org.fastcampus.chatservice.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @Builder
@@ -22,5 +24,11 @@ public class MemberChatroomMapping {
     @JoinColumn(name="chatroom_id")
     @ManyToOne
     Chatroom chatroom;
+
+    LocalDateTime lastCheckedAt;
+
+    public void updateLastCheckedAt(){
+        this.lastCheckedAt = LocalDateTime.now();
+    }
 
 }
